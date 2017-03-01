@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template, session, g, redirect, url_for, abort, flash, json
 from flask_restful import Resource, Api, reqparse
 from flaskext.mysql import MySQL
+from contextlib import closing
 import os
 import mysql.connector
 from mysql.connector import Error
@@ -8,14 +9,17 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 mysql = MySQL()
 app = Flask(__name__)
-api = Api(app)
+os.urandom(24)
+app.secret_key = '\xfd{H\xe5<\x95\xf9\xe3\x96.5\xd1\x010<!\xd5\xa2\xa0\x9fr"\xa1\xa8'
+#api = Api(app)
 
 #parser = reqparse.RequestParser()
 
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'jimi1310'
-app.config['MYSQL_DATABASE_DB'] = 'List'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_DB'] = 'List'
+app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql.init_app(app)
 
 #app.config.from_object(__name__)
@@ -36,17 +40,18 @@ def main():
 def showSignIn():
     return render_template('signin.html')
 
-@app.route("/signUp", methods=['POST'])
+@app.route("/signUp", methods=['POST', 'GET'])
 def signUp():
     try:
-    # read the posted values from the UI
+        # read the posted values from the UI
         _name = request.form['inputName']
         _email = request.form['inputEmail']
         _password = request.form['inputPassword']
 
     # validate the received values
         if _name and _email and _password:
-            conn = mysql.connect("localhost", "root", "jimi1310", "List")
+
+            conn = mysql.connect()
             cursor = conn.cursor()
             _hashed_password = generate_password_hash(_password)
             cursor.callproc('sp_createUser', (_name, _email, _hashed_password))
@@ -54,18 +59,62 @@ def signUp():
 
             if len(data) is 0:
                 conn.commit()
-                return json.dumps({'message': 'User created successfully'})
+                return json.dumps({'message': '' + _name + ' created successfully'})
+                cursor.close()
+                conn.close()
             else:
                 return json.dumps({'error': str(data[0])})
+
         else:
             return json.dumps({'html': '<span>Enter the required fields</span>'})
 
     except Exception as e:
         return json.dumps({'error': str(e)})
 
-    finally:
-        cursor.close()
-        conn.close()
+@app.route('/validateLogin', methods=['POST'])
+def validateLogin():
+    try:
+        _username = request.form['inputEmail']
+        _password = request.form['inputPassword']
+
+        # connect to mysql
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.callproc('sp_validateLogin', (_username,))
+        data = cursor.fetchall()
+
+        if len(data) > 0:
+            if check_password_hash(str(data[0][3]), _password):
+                session['user'] = data[0][0]
+                return redirect('/userHome')
+                cursor.close()
+                conn.close()
+            else:
+                return render_template('error.html', error='Wrong Email address or Password.')
+
+        else:
+            return render_template('error.html', error='Wrong Email address or Password.')
+
+    except Exception as e:
+        return render_template('error.html', error=str(e))
+
+@app.route('/userHome')
+def userHome():
+    if session.get('user'):
+        return render_template('userHome.html')
+    else:
+        return render_template('error.html', error='Unauthorized Access')
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect('/')
+
+@app.route('/showAddWish')
+def showAddWish():
+    return render_template('addWish.html')
+
 
 
 #@app.route('/login', methods=['GET', 'POST'])

@@ -115,6 +115,99 @@ def logout():
 def showAddWish():
     return render_template('addWish.html')
 
+@app.route('/addWish', methods=['POST'])
+def addWish():
+    try:
+        if session.get('user'):
+            _title = request.form['inputTitle']
+            _description = request.form['inputDescription']
+            _user = session.get('user')
+
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.callproc('sp_addWish', (_title, _description, _user))
+            data = cursor.fetchall()
+
+            if len(data) is 0:
+                conn.commit()
+                return redirect('userHome')
+                cursor.close()
+                conn.close()
+            else:
+                return render_template('error.html', error='An error occurred!')
+        else:
+            return render_template('error.html', error='Unauthorized Access')
+    except Exception as e:
+        return render_template('error.html', error=str(e))
+
+@app.route('/getWish')
+def getWish():
+    try:
+        if session.get('user'):
+            _user = session.get('user')
+
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.callproc('sp_GetWishByUser', (_user,))
+            wishes = cursor.fetchall()
+
+            wishes_dict = []
+            for wish in wishes:
+                wish_dict = {
+                        'Id': wish[0],
+                        'Title': wish[1],
+                        'Description': wish[2],
+                        'Date': wish[4]}
+                wishes_dict.append(wish_dict)
+            return json.dumps(wishes_dict)
+        else:
+            return render_template('error.html', error='Unauthorized Access')
+    except Exception as e:
+        return render_template('error.html', error=str(e))
+
+@app.route('/getTable', methods=['GET'])
+def getTable():
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        query = "SELECT * FROM tbl_user"
+        cursor.execute(query)
+        data = cursor.fetchall()
+
+        data_dict = []
+        for entries in data:
+            entries_dict = {
+                'user_id': entries[0],
+                'user_name': entries[1],
+                "user_username": entries[2],
+                "user_password": entries[3]}
+            data_dict.append(entries_dict)
+
+        return json.dumps(data_dict)
+
+        # return jsonify(data)
+
+@app.route('/updateTable', methods=['POST'])
+def updateTable():
+
+    if request.method =='POST':
+
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+
+        user_name = request.form['name']
+
+
+        return jsonify('success')
+
+
+
+
+
+
+
+
 
 
 #@app.route('/login', methods=['GET', 'POST'])

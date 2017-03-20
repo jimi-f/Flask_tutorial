@@ -190,7 +190,7 @@ def getTable():
 @app.route('/updateTable', methods=['POST'])
 def updateTable():
 
-    if request.method =='POST':
+    if request.method == 'POST':
 
 
         conn = mysql.connect()

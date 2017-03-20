@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20ee4141-f3d8-4a56-877b-cd4912fff5c2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/F_Pack/static/js/node_modules/jquery/src/event/userHome.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/F_Pack/templates/userHome.html" afterPath="$PROJECT_DIR$/F_Pack/templates/userHome.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/F_Pack/tutorial.py" afterPath="$PROJECT_DIR$/F_Pack/tutorial.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +23,8 @@
       <file leaf-file-name="tutorial.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/F_Pack/tutorial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2142">
-              <caret line="191" column="0" lean-forward="true" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
+            <state relative-caret-position="1530">
+              <caret line="196" column="30" lean-forward="true" selection-start-line="196" selection-start-column="30" selection-end-line="196" selection-end-column="30" />
               <folding>
                 <element signature="e#0#109#0" expanded="true" />
               </folding>
@@ -71,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/F_Pack/templates/userHome.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="562">
-              <caret line="82" column="12" lean-forward="true" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="12" />
+              <caret line="82" column="12" lean-forward="false" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="12" />
               <folding>
                 <element signature="e#3171#3177#0" expanded="true" />
               </folding>
@@ -442,7 +439,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="951" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15502183" sideWeight="0.49590644" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -451,7 +448,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28956625" sideWeight="0.49740162" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2954279" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2954279" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5040936" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39976552" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -860,7 +857,7 @@
     <entry file="file://$PROJECT_DIR$/F_Pack/templates/userHome.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="562">
-          <caret line="82" column="12" lean-forward="true" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="12" />
+          <caret line="82" column="12" lean-forward="false" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="12" />
           <folding>
             <element signature="e#3171#3177#0" expanded="true" />
           </folding>
@@ -877,8 +874,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/F_Pack/tutorial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="191" column="0" lean-forward="true" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
+        <state relative-caret-position="1530">
+          <caret line="196" column="30" lean-forward="true" selection-start-line="196" selection-start-column="30" selection-end-line="196" selection-end-column="30" />
           <folding>
             <element signature="e#0#109#0" expanded="true" />
           </folding>

@@ -169,14 +169,21 @@ def get_wish():
 
 @app.route('/getTable', methods=['GET'])
 def get_table():
-        conn = mysql.connect()
-        cursor = conn.cursor()
-        query = "SELECT * FROM tbl_user"
-        cursor.execute(query)
-        data = cursor.fetchall()
-        code = request.headers.get('Date')
-        print code
-        return jsonify(data)
+    try:
+        if request.method == 'GET':
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            query = "SELECT * FROM tbl_user"
+            cursor.execute(query)
+            data = cursor.fetchall()
+            if data is not None:
+                return jsonify(data)
+            else:
+                return json.dumps({'error': str(data[0])})
+        else:
+            return jsonify("Incorrect Method")
+    except Exception as e:
+        return jsonify('error', str(e))
 
 
 @app.route('/updateTable', methods=['POST', 'GET'])
@@ -192,6 +199,7 @@ def update_table():
             query = "INSERT INTO tbl_user(user_name,user_username,user_password) VALUES(%s,%s,%s)"
             args = (user_name, user_username, user_password)
             cursor.execute(query, args)
+            #print request.status_code
             data = cursor.fetchall()
             if data is not None:
                 conn.commit()
@@ -221,6 +229,9 @@ def delete_entry():
             return 'you may not innit'
     except Exception as e:
         return jsonify('error', str(e))
+
+
+
 
 
 # @app.route('/login', methods=['GET', 'POST'])

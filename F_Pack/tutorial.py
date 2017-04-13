@@ -231,9 +231,6 @@ def delete_entry():
         return jsonify('error', str(e))
 
 
-
-
-
 # @app.route('/login', methods=['GET', 'POST'])
 # def post(self):
     # if request.method == 'POST':
